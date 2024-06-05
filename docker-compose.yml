@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  web:
+    build: ./core
+    command: ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+    volumes:
+      - ./core/:/usr/src/app/
+    ports:
+      - "8000:8000"
+    env_file:
+      - ./core/.env
+    depends_on:
+      - db
+
+  db:
+    container_name: db
+    image: postgres:15
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: h@seyn4651
+      POSTGRES_DB: crawler
+
+volumes:
+  postgres_data:
