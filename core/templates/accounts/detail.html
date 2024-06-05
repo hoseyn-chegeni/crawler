@@ -21,13 +21,6 @@
               {% if request.user == user%}
               <a href="#" class="btn btn-outline-primary ms-1">تغییر رمز عبور</a>
             {%endif%}
-              {% if perms.accounts.activation%}
-              {% if user.is_active%}
-              <a href="#" data-toggle="modal" data-target="#suspendModal"  title="تعلیق" class="btn btn-outline-primary ms-1" >تعلیق</a>
-            {%else%}
-            <a href="#" data-toggle="modal" data-target="#reactiveModal"  title="فعال سازی مجدد" class="btn btn-outline-primary ms-1" >فعال سازی مجدد</a>
-            {%endif%}
-            {%endif%}
             {% if perms.accounts.delete_user%}
               <a href="#" data-toggle="modal" data-target="#exampleModal"  title="Delete" class="btn btn-outline-primary ms-1" >حذف</a>
             {%endif%}
@@ -141,45 +134,7 @@
 </div>
 
 
-      <!-- SUSPEND MODALS -->
-      <div class="modal fade" id="suspendModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">تایید تعلیق کاربر</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              آیا از غیرفعال سازی کاربر مطمین هستید؟
-            </div>
-            <div class="modal-footer">
-              <a class="btn btn-primary" href="#" class="btn">تایید</a>
-          </div>
-          </div>
-        </div>
-      </div>
 
-        <!-- REACTIVE MODALS -->
-        <div class="modal fade" id="reactiveModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">تایید تعلیق کاربر</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    آیا از فعال سازی مجدد کاربر مطمین هستید؟
-                </div>
-                <div class="modal-footer">
-                    <a class="btn btn-primary" href="" class="btn">تایید</a>
-                </div>
-                </div>
-            </div>
-            </div>
 
 <!-- jQuery (needed for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
