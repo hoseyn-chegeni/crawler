@@ -53,10 +53,7 @@
 <form action="#" method="post" id="deleteForm">
     {% csrf_token %}
   {%if perms.accounts.add_user%}
-  <a href="#" class="btn btn-success"> افزودن کاربر جدید</a>
-  {%endif%}
-  {% if perms.accounts.view_reports%}
-  <a href="#" class="btn btn-success me-2">گزارشات</a>
+  <a href="{% url 'accounts:create' %}" class="btn btn-success"> افزودن کاربر جدید</a>
   {%endif%}
   {%if perms.accounts.delete_user%}
   <button type="button" class="btn btn-success me-2" id="confirmDeleteBtn" style="display: none;">حذف</button> <!-- Delete button -->
@@ -104,9 +101,9 @@
   {%endif%}
     </td>
   <td class="align-middle">
-    <a href="#" data-mdb-toggle="tooltip" title="Detail"> <i class="fas fa-info-circle"></i></a>
+    <a href="{% url 'accounts:detail' i.id %}" data-mdb-toggle="tooltip" title="Detail"> <i class="fas fa-info-circle"></i></a>
     {%if perms.accounts.change_user%}
-    <a href="#" data-mdb-toggle="tooltip" title="Update"><i class="fas fa-edit" ></i></a>
+    <a href="{% url 'accounts:update' i.id %}" data-mdb-toggle="tooltip" title="Update"><i class="fas fa-edit" ></i></a>
     {%endif%}
   </td>
 </tr>

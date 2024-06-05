@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block title %}ویرایش کاربر {{ object }}{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <main>
+        <div class="py-5 text-center">
+            <img class="d-block mx-auto mb-4" src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-todo-list/check1.webp" alt="" width="62" height="47">
+            <h2>ویرایش کاربر {{ object }}</h2>
+        </div>
+
+        <div class="col-md-7 col-lg-8">
+            <h4 class="mb-3">اطلاعات</h4>
+            <form class="needs-validation" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="row g-3">
+
+                    <div class="col-sm-6">
+                        <label for="email" class="form-label">ایمیل</label>
+                        <input type="email" class="form-control" id="email" value="{{ object.email }}" name="email" required>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <label for="first_name" class="form-label">نام</label>
+                        <input type="text" class="form-control" id="first_name" value="{{ object.first_name }}" name="first_name" required>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <label for="last_name" class="form-label">نام خانوادگی</label>
+                        <input type="text" class="form-control" id="last_name" value="{{ object.last_name }}" name="last_name" required>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <label for="is_superuser" class="form-label">superuser</label>
+                        <select class="form-select" name="is_superuser" id="is_superuser">
+                            <option value="true" {% if object.is_superuser %}selected{% endif %}>بله</option>
+                            <option value="false" {% if not object.is_superuser %}selected{% endif %}>خیر</option>
+                        </select>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <label for="is_staff" class="form-label">staff</label>
+                        <select class="form-select" name="is_staff" id="is_staff">
+                            <option value="true" {% if object.is_staff %}selected{% endif %}>بله</option>
+                            <option value="false" {% if not object.is_staff %}selected{% endif %}>خیر</option>
+                        </select>
+                    </div>
+                </div>
+                <button class="w-100 btn btn-lg btn-outline-success" type="submit">ویرایش</button>
+            </form>
+        </div>
+    </main>
+</div>
+
+{% endblock %}
