@@ -1,4 +1,4 @@
-from django.shortcuts import  HttpResponseRedirect
+from django.shortcuts import HttpResponseRedirect
 from django.views.generic import DeleteView, DetailView, CreateView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django_filters.views import FilterView

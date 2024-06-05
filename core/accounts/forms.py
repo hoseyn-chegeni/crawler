@@ -2,6 +2,7 @@ from django.forms import ModelForm
 from django.contrib.auth.forms import UserCreationForm
 from .models import User
 
+
 class CustomUserCreationForm(UserCreationForm):
     class Meta:
         model = User
@@ -11,6 +12,7 @@ class CustomUserCreationForm(UserCreationForm):
             "last_name",
             "password1",
         )
+
 
 class CustomUserUpdateForm(ModelForm):
     class Meta:

@@ -1,5 +1,11 @@
 from django.shortcuts import render, redirect
-from base.views import BaseListView, BaseDetailView, BaseDeleteView, BaseUpdateView,BaseCreateView
+from base.views import (
+    BaseListView,
+    BaseDetailView,
+    BaseDeleteView,
+    BaseUpdateView,
+    BaseCreateView,
+)
 from .models import User
 from .filters import UserFilter
 from .forms import CustomUserCreationForm, CustomUserUpdateForm
@@ -11,12 +17,14 @@ from django.urls import reverse
 
 # Create your views here.
 
+
 class UserListView(BaseListView):
     model = User
     template_name = "accounts/list.html"
     context_object_name = "users"
     filterset_class = UserFilter
     permission_required = "accounts.view_user"
+
 
 class UserCreateView(BaseCreateView):
     model = User
@@ -33,6 +41,7 @@ class UserDetailView(BaseDetailView):
     context_object_name = "user"
     permission_required = "accounts.view_user"
 
+
 class UserUpdateView(BaseUpdateView):
     model = User
     form_class = CustomUserUpdateForm
@@ -40,6 +49,7 @@ class UserUpdateView(BaseUpdateView):
     app_name = "accounts"
     url_name = "detail"
     permission_required = "accounts.change_user"
+
 
 class UserDeleteView(BaseDeleteView):
     model = User
@@ -57,14 +67,14 @@ def logout_view(request):
     )  # Replace 'login' with the name of your login URL pattern
 
 
-
 class LoginView(BaseLoginView):
-    template_name = 'accounts/login.html'
+    template_name = "accounts/login.html"
+
     def form_valid(self, form):
-        username = form.cleaned_data['username']
-        password = form.cleaned_data['password']
+        username = form.cleaned_data["username"]
+        password = form.cleaned_data["password"]
         user = authenticate(self.request, username=username, password=password)
-        
+
         if user is not None and user.is_active:
             login(self.request, user)
             return HttpResponseRedirect(self.get_success_url())
@@ -72,4 +82,4 @@ class LoginView(BaseLoginView):
             return self.form_invalid(form)
 
     def get_success_url(self):
-        return reverse('index:index')
+        return reverse("index:index")
