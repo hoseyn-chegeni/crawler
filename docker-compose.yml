@@ -18,10 +18,8 @@ services:
     image: postgres:15
     volumes:
       - postgres_data:/var/lib/postgresql/data/
-    environment:
-      POSTGRES_USER: admin
-      POSTGRES_PASSWORD: h@seyn4651
-      POSTGRES_DB: crawler
+    env_file:
+      - ./core/.env
 
 volumes:
   postgres_data:
