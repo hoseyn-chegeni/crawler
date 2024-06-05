@@ -10,7 +10,6 @@ from django.contrib.auth import get_user_model
 class TestAccountsUrls(TestCase):
 
     def setUp(self):
-        # Define a list of URLs to test, along with their expected view classes or functions
         self.url_names = [
             ('list', UserListView),
             ('create', UserCreateView),
@@ -61,6 +60,5 @@ class TestAccountsUrls(TestCase):
         for url_name in self.dict_urls:
             url = reverse(url_name)
             response = self.client.get(url)
-            # Check if accessing the URL without authentication redirects to the login page
             self.assertRedirects(response, f'/accounts/login/?next={url}', fetch_redirect_response=False)
 
