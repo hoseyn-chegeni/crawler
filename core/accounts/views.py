@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from base.views import BaseListView, BaseDetailView, BaseDeleteView, BaseUpdateView,BaseCreateView
 from .models import User
 from .filters import UserFilter
-from .forms import CustomUserForm
+from .forms import CustomUserCreationForm, CustomUserUpdateForm
 from django.contrib.auth import logout
 from django.contrib.auth.views import LoginView as BaseLoginView
 from django.contrib.auth import authenticate, login
@@ -20,7 +20,7 @@ class UserListView(BaseListView):
 
 class UserCreateView(BaseCreateView):
     model = User
-    form_class = CustomUserForm
+    form_class = CustomUserCreationForm
     template_name = "accounts/create.html"
     app_name = "accounts"
     url_name = "detail"
@@ -35,7 +35,7 @@ class UserDetailView(BaseDetailView):
 
 class UserUpdateView(BaseUpdateView):
     model = User
-    form_class = CustomUserForm
+    form_class = CustomUserUpdateForm
     template_name = "accounts/update.html"
     app_name = "accounts"
     url_name = "detail"
