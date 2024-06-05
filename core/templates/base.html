@@ -217,6 +217,36 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="{% url 'index:index' %}">صفحه اصلی</a>
                     </li>
+                    <li class="nav-item dropdown">            
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        پروفایل
+                        </a>
+                        <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{% url 'accounts:detail' user.id %}">پروفایل</a></li>
+                        <li>
+                        <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="#">تغییر رمز ورود</a></li>
+                        </ul>
+                        </li>
+                        {%if perms.accounts.view_user%}
+                        <li class="nav-item dropdown">            
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        مدیریت کاربران
+                        </a>
+                        <ul class="dropdown-menu">
+                        </li>
+                        <li><a class="dropdown-item" href="{% url 'accounts:list' %}"> لیست کاربران</a></li>
+                        <li>
+                          {%if perms.accounts.change_user%}
+                        <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="{% url 'accounts:create' %}">ایجاد کاربر جدید</a></li>
+                        {%endif%}
+                        </ul>
+                        </li>        
+                        {%endif%}
+                        
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="#">خروج</a>
                     </li>
