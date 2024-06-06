@@ -1,5 +1,5 @@
 from django.test import TestCase
-from ..forms import CustomUserUpdateForm, UserCreationForm
+from ..forms import CustomUserUpdateForm
 
 
 class TestUserForms(TestCase):
@@ -9,17 +9,6 @@ class TestUserForms(TestCase):
                 "email": "test@test.com",
                 "first_name": "test",
                 "last_name": "test",
-            }
-        )
-        self.assertTrue(form.is_valid())
-
-    def test_create_user_form_with_valid_data(self):
-        form = CustomUserUpdateForm(
-            data={
-                "email": "test@test.com",
-                "first_name": "test",
-                "last_name": "test",
-                "password1": "Test@123",
             }
         )
         self.assertTrue(form.is_valid())
