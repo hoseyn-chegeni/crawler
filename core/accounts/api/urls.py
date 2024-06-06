@@ -1,6 +1,6 @@
 from django.urls import path, include
 
 
-app_name = "accounts"
+app_name = "api"
 
 urlpatterns = [path("", include("djoser.urls"))]
