@@ -24,6 +24,7 @@ urlpatterns = (
     [
         path("admin/", admin.site.urls),
         path("", include("core.swagger")),
+        path('api-auth/', include('rest_framework.urls')),
         path("", include("index.urls")),
         path("accounts/", include("accounts.urls")),
     ]
