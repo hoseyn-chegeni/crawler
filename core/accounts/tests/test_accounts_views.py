@@ -1,14 +1,10 @@
-from django.test import TestCase, Client,RequestFactory
+from django.test import TestCase, Client
 from ..views import User
 from django.urls import reverse
-from django.contrib.sessions.middleware import SessionMiddleware
-from accounts.views import UserListView
-from django.contrib.auth import get_user_model
-from django.contrib.auth.middleware import AuthenticationMiddleware
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.auth.models import Permission
 
-class TestLogin(TestCase):
+class TestLoginView(TestCase):
     def setUp(self):
         self.client = Client()
         self.user = User.objects.create_user(
@@ -28,10 +24,10 @@ class TestLogin(TestCase):
 
 
 
-class UserListViewTest(TestCase):
+class TestUserListView(TestCase):
     def setUp(self):
-        self.user = User.objects.create_user(email='testuser@example.com', password='12345', is_superuser = True)
-        self.user_2 = User.objects.create_user(email='testuser2@example.com', password='12345')
+        self.user_with_perms = User.objects.create_user(email='testuser@example.com', password='12345', is_superuser = True)
+        self.user = User.objects.create_user(email='testuser2@example.com', password='12345')
         self.user_with_permission = User.objects.create_user(email='permitteduser@example.com', password='12345')
         content_type = ContentType.objects.get_for_model(User)
         permission = Permission.objects.get(codename='view_user', content_type=content_type)
@@ -68,3 +64,41 @@ class UserListViewTest(TestCase):
         self.client.login(email='testuser2@example.com', password='12345')
         response = self.client.get(reverse('accounts:list'))
         self.assertEqual(response.status_code, 403)
+
+
+
+
+class TestUserDeatilView(TestCase):
+    def setUp(self):
+        self.user_with_perms = User.objects.create_user(email='testuser@example.com', password='12345', is_superuser = True)
+
+    def test_user_detail_view(self):
+        self.client.login(email='testuser@example.com', password='12345')
+        response = self.client.get(reverse('accounts:detail', kwargs={'pk': self.user_with_perms.pk}))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, self.user_with_perms.email)
+
+
+    def test_login_required(self):
+        response = self.client.get(reverse('accounts:detail', kwargs={'pk': self.user_with_perms.pk}))
+        self.assertEqual(response.status_code, 302)
+        self.assertTrue(response.url.startswith('/accounts/login/'))
+
+
+class TestAccountsPermissions(TestCase):
+    def setUp(self):
+        self.user_without_permission = User.objects.create_user(email='testuser@example.com', password='12345')
+        self.user_with_permission = User.objects.create_user(email='permitteduser@example.com', password='12345')
+        content_type = ContentType.objects.get_for_model(User)
+        permission = Permission.objects.get(codename='view_user', content_type=content_type)
+        self.user_with_permission.user_permissions.add(permission)
+
+    def test_permission_required_denied(self):
+        self.client.login(email='testuser@example.com', password='12345')
+        response = self.client.get(reverse('accounts:detail', kwargs={'pk': self.user_without_permission.pk}))
+        self.assertEqual(response.status_code, 403)
+
+    def test_permission_required_granted(self):
+        self.client.login(email='permitteduser@example.com', password='12345')
+        response = self.client.get(reverse('accounts:detail', kwargs={'pk': self.user_with_permission.pk}))
+        self.assertEqual(response.status_code, 200)
