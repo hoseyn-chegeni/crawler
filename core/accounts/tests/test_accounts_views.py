@@ -102,3 +102,52 @@ class TestAccountsPermissions(TestCase):
         self.client.login(email='permitteduser@example.com', password='12345')
         response = self.client.get(reverse('accounts:detail', kwargs={'pk': self.user_with_permission.pk}))
         self.assertEqual(response.status_code, 200)
+
+
+
+
+class UserCreateViewTest(TestCase):
+    def setUp(self):
+        self.user = User.objects.create_user(email='testuser@example.com', password='12345')
+        self.user_with_permission = User.objects.create_user(email='admin@admin.com', password='admin12345')
+        content_type = ContentType.objects.get_for_model(User)
+        permission = Permission.objects.get(codename='add_user', content_type=content_type)
+        self.user_with_permission.user_permissions.add(permission)
+
+    def test_form_display(self):
+        self.client.login(email='admin@admin.com', password='admin12345')
+        response = self.client.get(reverse('accounts:create'))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'form')
+        self.assertContains(response, 'email')
+        self.assertContains(response, 'first_name')
+        self.assertContains(response, 'last_name')
+        self.assertContains(response, 'password1')
+
+    def test_form_submission(self):
+        self.client.login(email='admin@admin.com', password='admin12345')
+        data = {
+            'email': 'newuser@example.com',
+            'first_name': 'New',
+            'last_name': 'User',
+            'password1': 'D@tateb$^@',
+            'password2': 'D@tateb$^@'
+        }
+        response = self.client.post(reverse('accounts:create'), data)
+
+
+        self.assertEqual(response.status_code, 302)
+        self.assertTrue(User.objects.filter(email='newuser@example.com').exists())
+        new_user = User.objects.get(email='newuser@example.com')
+        self.assertEqual(new_user.first_name, 'New')
+        self.assertEqual(new_user.last_name, 'User')
+
+    def test_permission_required_denied(self):
+        self.client.login(email='testuser@example.com', password='12345')
+        response = self.client.get(reverse('accounts:create'))
+        self.assertEqual(response.status_code, 403)
+
+    def test_permission_required_granted(self):
+        self.client.login(email='admin@admin.com', password='admin12345')
+        response = self.client.get(reverse('accounts:create'))
+        self.assertEqual(response.status_code, 200)
