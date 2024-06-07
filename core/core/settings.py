@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "rest_framework",
+    "rest_framework.authtoken",
     "drf_yasg",
     "djoser",
     "django_filters",
@@ -158,3 +159,12 @@ AUTH_USER_MODEL = "accounts.User"
 
 LOGIN_URL = "accounts:login"
 LOGIN_REDIRECT_URL = "index:index"
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+    ]
+}
