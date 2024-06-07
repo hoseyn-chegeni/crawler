@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     "drf_yasg",
     "djoser",
     "django_filters",
+    'rest_framework_simplejwt',
     "accounts",
     "index",
     "base",
@@ -166,5 +167,7 @@ REST_FRAMEWORK = {
         "rest_framework.authentication.BasicAuthentication",
         "rest_framework.authentication.SessionAuthentication",
         "rest_framework.authentication.TokenAuthentication",
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+
     ]
 }
