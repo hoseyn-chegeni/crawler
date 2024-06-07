@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "drf_yasg",
     "djoser",
+    "django_filters",
     "accounts",
     "index",
     "base",

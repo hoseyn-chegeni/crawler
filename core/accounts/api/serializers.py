@@ -4,7 +4,7 @@ from ..models import User
 class UserCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ["email", "first_name", "last_name", "password", "is_superuser"]
+        fields = ["id","email", "first_name", "last_name", "password", "is_superuser"]
         extra_kwargs = {
             'password': {'write_only': True}  # Ensure password is write-only
         }
@@ -20,7 +20,7 @@ class UserCreateSerializer(serializers.ModelSerializer):
 class UserUpdateSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ["email", "first_name", "last_name", "password", "is_superuser"]
+        fields = ["id","email", "first_name", "last_name", "password", "is_superuser"]
         extra_kwargs = {
             'password': {'write_only': True, 'required': False}  # Password is not required on update
         }
