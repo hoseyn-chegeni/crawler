@@ -36,3 +36,15 @@ class TestAccountsAPi:
         self.client.force_authenticate(user = common_user)
         response = self.client.post(url,data)
         assert response.status_code == 201
+
+
+    def test_create_user_with_invalid_data(self, common_user):
+        url = reverse('accounts:api:registration')
+        data = {
+            'email':'z@z.com',
+            'password':'11222',
+            'password1':'112223334',
+        }
+        self.client.force_authenticate(user = common_user)
+        response = self.client.post(url,data)
+        assert response.status_code == 400
