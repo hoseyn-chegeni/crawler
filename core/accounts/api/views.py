@@ -18,7 +18,6 @@ from rest_framework.views import APIView
 
 
 class UserListCreateAPIView(ListAPIView):
-    permission_classes = [IsAuthenticated]
     serializer_class = UserSerializer
     queryset = User.objects.all()
     filter_backends = [DjangoFilterBackend, OrderingFilter]

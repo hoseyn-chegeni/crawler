@@ -38,7 +38,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     "django.contrib.admin",
-    "django.contrib.auth",
+    "django.contrib.auth", 
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
@@ -96,6 +96,7 @@ DATABASES = {
         "PASSWORD": os.getenv("SQL_PASSWORD"),
         "HOST": os.getenv("SQL_HOST"),
         "PORT": os.getenv("SQL_PORT", "5432"),
+        'ATOMIC_REQUESTS': True
     }
 }
 

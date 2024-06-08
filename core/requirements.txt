@@ -10,3 +10,4 @@ Pillow
 black
 drf_yasg
 djoser
+pytest-django
