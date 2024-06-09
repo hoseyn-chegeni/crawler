@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     "accounts",
     "index",
     "base",
+    "scraper",
 
 ]
 
