@@ -27,7 +27,6 @@ urlpatterns = (
         path("api-auth/", include("rest_framework.urls")),
         path("", include("index.urls")),
         path("accounts/", include("accounts.urls")),
-        path("crawler/", include("crawler.urls")),
 
     ]
     + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
