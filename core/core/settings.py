@@ -52,6 +52,8 @@ INSTALLED_APPS = [
     "accounts",
     "index",
     "base",
+    "crawler",
+
 ]
 
 MIDDLEWARE = [
