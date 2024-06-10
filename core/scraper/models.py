@@ -1,5 +1,6 @@
 from django.db import models
 
+
 # Create your models here.
 class ScrapedData(models.Model):
     title = models.CharField(max_length=255)
@@ -15,6 +16,6 @@ class ScrapedData(models.Model):
     hyper_link = models.CharField(max_length=255, null=True, blank=True)
     company_name = models.CharField(max_length=255, null=True, blank=True)
     web_app = models.CharField(max_length=255, null=True, blank=True)
+
     def __str__(self):
         return self.title
-

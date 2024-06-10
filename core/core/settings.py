@@ -38,7 +38,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     "django.contrib.admin",
-    "django.contrib.auth", 
+    "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
@@ -48,12 +48,11 @@ INSTALLED_APPS = [
     "drf_yasg",
     "djoser",
     "django_filters",
-    'rest_framework_simplejwt',
+    "rest_framework_simplejwt",
     "accounts",
     "index",
     "base",
     "scraper",
-
 ]
 
 MIDDLEWARE = [
@@ -98,7 +97,7 @@ DATABASES = {
         "PASSWORD": os.getenv("SQL_PASSWORD"),
         "HOST": os.getenv("SQL_HOST"),
         "PORT": os.getenv("SQL_PORT", "5432"),
-        'ATOMIC_REQUESTS': True
+        "ATOMIC_REQUESTS": True,
     }
 }
 
@@ -170,7 +169,6 @@ REST_FRAMEWORK = {
         "rest_framework.authentication.BasicAuthentication",
         "rest_framework.authentication.SessionAuthentication",
         "rest_framework.authentication.TokenAuthentication",
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
-
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
     ]
 }
