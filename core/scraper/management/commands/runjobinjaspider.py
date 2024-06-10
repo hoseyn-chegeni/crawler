@@ -3,7 +3,7 @@ from scrapy.crawler import CrawlerProcess
 from spiders.jobinja_spider import JobinjaSpider
 
 class Command(BaseCommand):
-    help = 'Run Scrapy spider'
+    help = 'Run Jobinja Scrapy spider'
 
     def handle(self, *args, **options):
         process = CrawlerProcess()

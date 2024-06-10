@@ -5,7 +5,7 @@ import re
 
 
 class JobinjaSpider(scrapy.Spider):
-    name = 'example'
+    name = 'jobinja'
     allowed_domains = ['jobinja.ir']
     start_urls = ['https://jobinja.ir/jobs?&b=&filters%5Bjob_categories%5D%5B0%5D=&filters%5Bkeywords%5D%5B0%5D=&filters%5Blocations%5D%5B0%5D=&page=1']
 
