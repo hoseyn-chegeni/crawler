@@ -3,7 +3,7 @@ from ...models import ScrapedData
 from rest_framework.generics import ListAPIView
 from rest_framework.filters import OrderingFilter
 from django_filters.rest_framework import DjangoFilterBackend
-
+from .pagination import LargeResultsSetPagination
 
 class ScrapedDataListView(ListAPIView):
     serializer_class = ScrapedDataSerializer
@@ -23,3 +23,4 @@ class ScrapedDataListView(ListAPIView):
         "web_app",
     ]
     ordering_fields = ["id", "created_at"]
+    pagination_class = LargeResultsSetPagination
