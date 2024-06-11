@@ -13,3 +13,4 @@ djoser
 pytest-django
 scrapy
 celery
+redis
