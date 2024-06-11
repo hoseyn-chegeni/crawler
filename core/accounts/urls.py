@@ -12,7 +12,7 @@ from .views import (
 app_name = "accounts"
 
 urlpatterns = [
-    path("api/", include("accounts.api.v1.urls")),
+    path("api/v1/", include("accounts.api.v1.urls")),
     path("list/", UserListView.as_view(), name="list"),
     path("create/", UserCreateView.as_view(), name="create"),
     path("detail/<int:pk>/", UserDetailView.as_view(), name="detail"),
