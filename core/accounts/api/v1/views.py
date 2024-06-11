@@ -3,7 +3,7 @@ from .serializers import (
     RegistrationSerializer,
     CustomAuthTokenSerializer,
 )
-from ..models import User
+from ...models import User
 from rest_framework.generics import ListAPIView, RetrieveUpdateDestroyAPIView
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import OrderingFilter

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from ..models import User
+from ...models import User
 from django.contrib.auth.password_validation import validate_password
 from django.core import exceptions
 from django.contrib.auth import authenticate
@@ -54,9 +54,7 @@ class CustomAuthTokenSerializer(serializers.Serializer):
                 password=password,
             )
 
-            # The authenticate call simply returns None for is_active=False
-            # users. (Assuming the default ModelBackend authentication
-            # backend.)
+
             if not user:
                 msg = _("Unable to log in with provided credentials.")
                 raise serializers.ValidationError(msg, code="authorization")
