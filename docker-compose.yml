@@ -1,6 +1,10 @@
 version: '3.8'
 
 services:
+  redis:
+    container_name: redis
+    image: redis:7.0.11-alpine
+
   web:
     build: ./core
     command: ["python", "manage.py", "runserver", "0.0.0.0:8000"]
@@ -11,6 +15,20 @@ services:
     env_file:
       - ./core/.env
     depends_on:
+      - db
+      - redis
+
+  celery:
+    container_name: celery
+    build:
+      context: ./core
+    command: celery --app=core worker -l INFO 
+    env_file:
+      - ./core/.env
+    volumes:
+      - ./core:/usr/src/app
+    depends_on:
+      - redis
       - db
 
   db:

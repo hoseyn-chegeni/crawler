@@ -12,3 +12,4 @@ drf_yasg
 djoser
 pytest-django
 scrapy
+celery
