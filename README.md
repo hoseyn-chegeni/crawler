@@ -244,9 +244,9 @@ docker-compose exec web sh -c 'python manage.py runjobvisionspider'
     <td><img src="core/images/image3.png" alt="Image 3"></td>
   </tr>
 </table>
-در صورت اجرای پروژه اطلاعات شغلی در آدرس زیر قابل دسترسی می باشد 
+در صورت اجرای پروژه اطلاعات شغلی در آدرس زیر قابل دسترسی می باشد <br>
 
-`http://127.0.0.1:8000/scraper/api/v1/scraped-data`
+`http://127.0.0.1:8000/scraper/api/v1/scraped-data`  <br>
 نمونه دیتا نمایش داده شده <br>
 <div dir="ltr">
 
