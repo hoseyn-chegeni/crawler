@@ -17,12 +17,12 @@ class TestAccountsAPi:
     client = APIClient()
 
     def test_accounts_api_get_response_200_status(self):
-        url = reverse("accounts:api:users")
+        url = reverse("accounts:api-v1:users")
         response = self.client.get(url)
         assert response.status_code == 200
 
     def test_create_user_response_unauthorized_401_status(self):
-        url = reverse("accounts:api:registration")
+        url = reverse("accounts:api-v1:registration")
         data = {
             "email": "z@z.com",
             "password": "db@sldk;fj",
@@ -32,7 +32,7 @@ class TestAccountsAPi:
         assert response.status_code == 401
 
     def test_create_user_response_201_status(self, common_user):
-        url = reverse("accounts:api:registration")
+        url = reverse("accounts:api-v1:registration")
         data = {
             "email": "z@z.com",
             "password": "db@sldk;fj",
@@ -43,7 +43,7 @@ class TestAccountsAPi:
         assert response.status_code == 201
 
     def test_create_user_with_invalid_data(self, common_user):
-        url = reverse("accounts:api:registration")
+        url = reverse("accounts:api-v1:registration")
         data = {
             "email": "z@z.com",
             "password": "11222",
