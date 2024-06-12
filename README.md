@@ -18,8 +18,8 @@
       git clone 'https://github.com/yamamoto-tsunetomo/crawler.git'
    ```
 
- توجه داشته باشید که پیش از اجرای پروژه تنظیمات دیتابیس باید انجام شود 
- برای تنظیم دیتابیس به بخش  [تنظیمات دیتابیس](تنظیمات-دیتابیس) مراجعه نمایید 
+ توجه داشته باشید که پیش از اجرای پروژه تنظیمات دیتابیس باید انجام شود <br> 
+ برای تنظیم دیتابیس به بخش  [تنظیمات دیتابیس](تنظیمات-دیتابیس) مراجعه نمایید <br> 
 سپس دستور زیر را اجرا نمایید 
 
    ```bash
@@ -63,7 +63,7 @@ GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO myuser;
    ```bash
 GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public TO myuser;
    ```
-سپس اطلاعات دیتابیس را در فایل  .env قرار دهید 
+سپس اطلاعات دیتابیس را در فایل  .env قرار دهید <br> 
 توجه داشته باشید که در فایل settings.py تنظیمات دیتابیس باید تغییر کند تا پروژه به جای استفاده از  sqlite3  به دیتابیس مورد نظر متصل شود 
 
    ```python
@@ -79,7 +79,7 @@ DATABASES = {
     }
 }
 ```
-برای مشاهده جداول و اطلاعات دیتابیس از طریق ترمینال مطابق دستورات زیر عمل کنید
+برای مشاهده جداول و اطلاعات دیتابیس از طریق ترمینال مطابق دستورات زیر عمل کنید<br> 
 اتصال به کانتیر دیتابیس
 
    ```bash
@@ -184,12 +184,12 @@ volumes:
   postgres_data:
 
  ```
-فایل Docker Compose  سرویس های به کار رفته در پروژه پیکربندی کرده و dependency  های میان سرویس ها را تنظیم و volume هایی برای ذخیره کردن داده های مهم فراهم میکند 
-این فایل شامل پروژه اصلی با نام web  دیتابیس پروژه با نام  db و سرویس های  redis و  celery   برای انجام تسک های زمان بندی شده است 
+فایل Docker Compose  سرویس های به کار رفته در پروژه پیکربندی کرده و dependency  های میان سرویس ها را تنظیم و volume هایی برای ذخیره کردن داده های مهم فراهم میکند <br> 
+این فایل شامل پروژه اصلی با نام web  دیتابیس پروژه با نام  db و سرویس های  redis و  celery   برای انجام تسک های زمان بندی شده است <br> 
 
 
 ## اجرای دستورات و استخراج اطلاعات از jobvision و joninja
-تسک های اصلی برای استخراج داده از سایت های مورد نظر از طریق ابزار  scrapy  تعریف شده اند که دایرکتوری اصلی برنامه در پوشه  spiders قابل مشاهده می باشند 
+تسک های اصلی برای استخراج داده از سایت های مورد نظر از طریق ابزار  scrapy  تعریف شده اند که دایرکتوری اصلی برنامه در پوشه  spiders قابل مشاهده می باشند <br> 
 برای اجرای scrapy دستور زیر را اجرا نمایید 
 ```bash
 scrapy startproject <project_name>
@@ -197,7 +197,7 @@ scrapy startproject <project_name>
 
 
 
-برای اجرای این تسک ها دستورات  manage.py  ایجاد شده است  که در دایرکتوری اصلی پوشه scraper/management  تنظیمات این دستورات قابل مشاهده می باشند 
+برای اجرای این تسک ها دستورات  manage.py  ایجاد شده است  که در دایرکتوری اصلی پوشه scraper/management  تنظیمات این دستورات قابل مشاهده می باشند <br> 
 مدل تعریف شده در پوشه scraper/models  با عنوان ScrapedData  برای ذخیره سازی داده های استخراج شده به کار میرود که شامل فیلد های زیر می باشد 
 | نام               | توضیحات                                                     |
 |--------------------------|-----------------------------------------------------------------|
@@ -230,22 +230,121 @@ docker-compose exec web sh -c 'python manage.py runjobvisionspider'
 
 <table>
   <tr>
-    <td><img src="images/image1.png" alt="Image 1"></td>
-    <td><img src="images/image2.png" alt="Image 2"></td>
+    <td><img src="core/images/image1.png" alt="Image 1"></td>
+    <td><img src="core/images/image2.png" alt="Image 2"></td>
   </tr>
 </table>
 
 ## راهنمای وب سرویس
-توضیحات مربوط به راهنمای وب سرویس
 
+پس از اجرای پروژه مستندات وب سرویس (swagger) در ادرس `http://localhost` قابل مشاهد می باشند 
+
+<table>
+  <tr>
+    <td><img src="core/images/image3.png" alt="Image 3"></td>
+  </tr>
+</table>
+در صورت اجرای پروژه اطلاعات شغلی در آدرس زیر قابل دسترسی می باشد 
+
+`http://127.0.0.1:8000/scraper/api/v1/scraped-data`
+نمونه دیتا نمایش داده شده <br>
+<div dir="ltr">
+
+    {
+      "id": 178,
+      "title": "کارآموز برنامه نویسی Python (دورکاری)",
+      "description": "this is test",
+      "employment_type": "تمام وقت یا پاره وقت",
+      "location": "زاهدان, N/A",
+      "gender": "تفاوتی ندارد",
+      "minimum_work_experience": "N/A",
+      "salary": "10 - 15 میلیون تومان",
+      "skills": "",
+      "job_classification": "توسعه نرم افزار و برنامه نویسی",
+      "military_service_status": "Not Required",
+      "company_name": "موسسه بین المللی واتا",
+      "hyper_link": "https://jobvision.ir/jobs/769982/",
+      "web_app": "JobVision"
+    }
+</div>
+
+
+همچنین شما میتوانید برای فیلتر یا جستجوی اطلاعات شغلی از طریق پارامتر های url  استفاده نمایید به طور مثال اطلاعات اگهی های برنامه نویس پایتون در شهر اصفهان 
+`http://127.0.0.1:8000/scraper/api/v1/scraped-data?title=&description=&employment_type=&location=%D8%A7%D8%B5%D9%81%D9%87%D8%A7%D9%86&gender=&minimum_work_experience=&salary=&skills=python&job_classification=&military_service_status=&hyper_link=&company_name=&web_app=`
+
+    
+همچنین در بخش accounts  متد های  لیست کاربران٫ جزییات کاربر٫ ایجاد ویرایش و حذف کاربر ٫ ایجاد توکن٫ ایجاد رفرش و صحت سنجی توکن JWT  و لاگین و لاگ اوت مبتنی بر توکن پیاده سازی شده است 
 ## ابزار های مورد استفاده
-توضیحات مربوط به ابزار های مورد استفاده
+تمام ابزار ها و کتابخانه های استفاده شده در پروژه در فایل  requirements.txt  ذکر شده است <br>
+برای دیتابیس از postgresql  استفاده شده است به دلیل عملکرد بهتر نسبت به sqlite  در مقیاس بالا <br>
+برای استخراج دیتا از صفحات از ابزار scrapy  استفاده شده است به دلیل مطابقت بیشتر با django  و دارا بودن مجموع قابلیت های کتابخانه های دیگر مثل requests, beautifulsoup <br>
+برای فیلتر و جست جو از ابزار  django-filter  که توصیه شده ترین ابزار برای این کار در پروژه django. django test framework  می باشد <br>
+برای تسک های زمان بندی شده از  redis , celery  به دلیل مطابقت بیشتر با  django  و سبک وزن بودن و ساده تر بودن نسبت به  rabbitmq استفاده شده است <br>
+همچنین برای احراز هویت کاربران سه حالت  session و token base  و JWT  پیاده سازی شده است  
+```python
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework.authentication.BasicAuthentication",
+        "rest_framework.authentication.SessionAuthentication",
+        "rest_framework.authentication.TokenAuthentication",
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
+    ]
+}
+```
+
 
 ## Unit test & Pytest
-توضیحات مربوط به Unit test & Pytest
+تست های پیاده سازی شده برای پروژه در دو مسیر  core/accounts/tests  و core/scraper/tests قابل مشاهده می باشند 
+همچنین برای اجرای تست های میتوانید یکی از دستورات زیر را اجرا نمایید 
 
+```bash
+python manage.py test
+```
+```bash
+pytest . 
+```
+<table>
+  <tr>
+    <td><img src="core/images/image4.png" alt="Image 3"></td>
+  </tr>
+</table>
 
 ## تسک های زمان بندی شده
+
+تسک های زمان بندی شده برای اپدیت دیتا موجود در دیتابیس مورد استفاده قرار می گیرد به این صورت که در هر پنج دقیفه دستور بررسی دیتای صفحه جدیدترین آگهی ها بررسی شده و در صورت وجود نداشتن أگهی در دیتابیس instance جدید در دیتابیس ایجاد می شود <br>
+این تسک ففط برای سایت جابینجا نوشته شده است <br> 
+توجه داشته باشید که حتما باید بروگر های ردیس برای celery  تعریف شده باشید در غیر این صورت celery به طور پیش فرض به دنبال بروکر های rabbitmq  میگردد <br> 
+نحوه تنظیم بروکر در فایل settings.py 
+
+```python
+CELERY_BROKER_URL = "redis://redis:6379/0"
+CELERY_RESULT_BACKEND = "redis://redis:6379/0"
+
+```
+
+تسک 
+```python
+from celery import shared_task
+from django.core.management import call_command
+
+@shared_task
+def run_jobinja_update_spider():
+    call_command("runjobinjaupdatespider")
+```
+
+تنظیمات اجرای تسک در فایل  settings.py 
+```python
+CELERY_BEAT_SCHEDULE = {
+    "run_jobinja_update_spider": {
+        "task": "scraper.tasks.run_jobinja_update_spider",
+        "schedule": crontab(minute="*/5"),
+    },
+}
+```
+نحوه اجرای تسک 
+   ```bash
+      docker-compose exec web sh -c 'celery -A core beat -l info'
+   ```
 
 
 
