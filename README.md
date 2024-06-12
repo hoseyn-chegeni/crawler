@@ -15,8 +15,8 @@
 ## نحوه اجرا
 برای اجرای پروژه در ابتدا پروژه باید از گیت هاب کلون شود 
    ```bash
-      git clone 'https://github.com/yamamoto-tsunetomo/crawler.git'
-   ```
+git clone 'https://github.com/hoseyn-chegeni/crawler.git'
+ ```
 
  توجه داشته باشید که پیش از اجرای پروژه تنظیمات دیتابیس باید انجام شود <br> 
  برای تنظیم دیتابیس به بخش  [تنظیمات دیتابیس](تنظیمات-دیتابیس) مراجعه نمایید <br> 
