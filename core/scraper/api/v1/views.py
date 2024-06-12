@@ -14,5 +14,5 @@ class ScrapedDataListView(ListAPIView):
     queryset = ScrapedData.objects.all()
     filter_backends = [DjangoFilterBackend, OrderingFilter]
     filterset_class = ScrapedDataFilter
-    ordering_fields = ["id", "created_at"]
+    ordering_fields = ["id", "created_at",'title']
     pagination_class = LargeResultsSetPagination
