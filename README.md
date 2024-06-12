@@ -228,6 +228,12 @@ docker-compose exec web sh -c 'python manage.py runjobvisionspider'
 ```
 پس از اجرای دستورات اطلاعات در دیتابیس ذخیره خواهند شده 
 
+<table>
+  <tr>
+    <td><img src="images/image1.png" alt="Image 1"></td>
+    <td><img src="images/image2.png" alt="Image 2"></td>
+  </tr>
+</table>
 
 ## راهنمای وب سرویس
 توضیحات مربوط به راهنمای وب سرویس
