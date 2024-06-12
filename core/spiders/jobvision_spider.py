@@ -9,15 +9,16 @@ class JobvisionSpider(scrapy.Spider):
 
     def parse(self, response):
         post_id = response.meta.get("post_id", 700000)
-
+        # استخراج دیتا از اسکریپت جاوا اسکریپت موجود در صفحه
         script_text = response.xpath('//script[@id="serverApp-state"]/text()').get()
         if script_text:
             try:
+                # استخراج داده JSON  از اسکریپت
                 json_data = json.loads(script_text)
             except json.JSONDecodeError:
                 self.logger.error("Failed to decode JSON data")
                 return
-
+            # دریافت اطلاعات شغلی از دامنه موجود در json   
             job_data = json_data.get(
                 f"https://candidateapi.jobvision.ir/api/v1/JobPost/Detail?jobPostId={post_id}"
             )
@@ -93,6 +94,7 @@ class JobvisionSpider(scrapy.Spider):
                     )
                     self.logger.info(f"Saved job post: {title}")
 
+        # بررسی  url صفحه بعد بر اساس شناسه صفحه 
         for i in range(700001, 770000):
             next_page = f"https://jobvision.ir/jobs/{i}/"
             yield scrapy.Request(next_page, callback=self.parse, meta={"post_id": i})
