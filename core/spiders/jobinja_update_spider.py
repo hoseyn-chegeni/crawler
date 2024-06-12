@@ -60,7 +60,9 @@ class JobinjaUpdateSpider(scrapy.Spider):
             elif key == "وضعیت نظام وظیفه":
                 military_service_status = value
 
-        if not ScrapedData.objects.filter(title=title, company_name=company_name).exists():
+        if not ScrapedData.objects.filter(
+            title=title, company_name=company_name
+        ).exists():
             ScrapedData.objects.create(
                 title=title,
                 hyper_link=unique_url,

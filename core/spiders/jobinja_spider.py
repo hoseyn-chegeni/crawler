@@ -8,7 +8,7 @@ class JobinjaSpider(scrapy.Spider):
     allowed_domains = ["jobinja.ir"]
     start_urls = [
         "https://jobinja.ir/jobs?&b=&filters%5Bjob_categories%5D%5B0%5D=&filters%5Bkeywords%5D%5B0%5D=&filters%5Blocations%5D%5B0%5D=&page=1"
-    ]  
+    ]
 
     def parse(self, response):
         page_numbers = []
@@ -27,17 +27,17 @@ class JobinjaSpider(scrapy.Spider):
             link = job.css("::attr(href)").get()
             if link is not None:
                 link = response.urljoin(link)
-            #  ایجاد ریکویست برای صفحه جزییات
+                #  ایجاد ریکویست برای صفحه جزییات
                 yield scrapy.Request(
                     link, callback=self.parse_job_details, meta={"title": title}
                 )
-        # پیمایش تمام صفحات لیست 
+        # پیمایش تمام صفحات لیست
         for i in range(max(page_numbers)):
             next_page = f"https://jobinja.ir/jobs?&b=&filters%5Bjob_categories%5D%5B0%5D=&filters%5Bkeywords%5D%5B0%5D=&filters%5Blocations%5D%5B0%5D=&page={i + 1}"
             yield scrapy.Request(next_page, callback=self.parse)
 
     def parse_job_details(self, response):
-    #   دریافت اطلاعات مشاغل از صفجه جزییات 
+        #   دریافت اطلاعات مشاغل از صفجه جزییات
         title = response.meta["title"]
         job_description_parts = response.css(
             ".o-box__text::text, .o-box__text.s-jobDesc.c-pr40p::text"

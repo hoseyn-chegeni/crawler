@@ -170,14 +170,13 @@ REST_FRAMEWORK = {
         "rest_framework_simplejwt.authentication.JWTAuthentication",
     ]
 }
-CELERY_BROKER_URL = 'redis://redis:6379/0'
-CELERY_RESULT_BACKEND = 'redis://redis:6379/0'
-
-
+CELERY_BROKER_URL = "redis://redis:6379/0"
+CELERY_RESULT_BACKEND = "redis://redis:6379/0"
 
 
 CELERY_BEAT_SCHEDULE = {
     "run_jobinja_update_spider": {
         "task": "scraper.tasks.run_jobinja_update_spider",
-        'schedule': crontab(minute='*/5'),},
+        "schedule": crontab(minute="*/5"),
+    },
 }

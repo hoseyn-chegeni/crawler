@@ -1,4 +1,4 @@
-from django.shortcuts import  redirect
+from django.shortcuts import redirect
 from django.contrib.auth import logout
 from django.contrib.auth.views import LoginView as BaseLoginView
 from django.contrib.auth import authenticate, login
@@ -6,6 +6,7 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 
 # Create your views here.
+
 
 def logout_view(request):
     logout(request)
