@@ -1,4 +1,19 @@
 # Crawler
+## محتویات فایل .env
+```env
+SECRET_KEY=django-insecure-lu3q-&w05blxicjw1rm3lurlxnz6u@t0ge28h62!_2e80g+zrj
+SQL_DATABASE=crawler
+SQL_USER=admin
+SQL_PASSWORD=@dmin2321
+SQL_HOST=db
+SQL_PORT=5432
+
+
+POSTGRES_USER=admin
+POSTGRES_PASSWORD=@dmin2321
+POSTGRES_DB=crawler
+```
+
 <div dir="rtl">
 
 ## فهرست موضوعات
