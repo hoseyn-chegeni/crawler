@@ -1,5 +1,5 @@
 # Crawler
-## محتویات فایل .env
+## محتویات فایل .env در دایرکتوری /core/
 ```env
 SECRET_KEY=django-insecure-lu3q-&w05blxicjw1rm3lurlxnz6u@t0ge28h62!_2e80g+zrj
 SQL_DATABASE=crawler
