@@ -1,18 +1,4 @@
 # Crawler
-## محتویات فایل .env در دایرکتوری /core/
-```env
-SECRET_KEY=django-insecure-lu3q-&w05blxicjw1rm3lurlxnz6u@t0ge28h62!_2e80g+zrj
-SQL_DATABASE=crawler
-SQL_USER=admin
-SQL_PASSWORD=@dmin2321
-SQL_HOST=db
-SQL_PORT=5432
-
-
-POSTGRES_USER=admin
-POSTGRES_PASSWORD=@dmin2321
-POSTGRES_DB=crawler
-```
 
 <div dir="rtl">
 
@@ -50,6 +36,9 @@ git clone 'https://github.com/hoseyn-chegeni/crawler.git'
 ## تنظیمات دیتابیس
 برای اجرا و اتصال دیتابیس postgresql  به پروژه دستورات  زیر را اجرا نمایید 
 
+   ```bash
+      psql -U postgres
+   ```
    ```bash
       sudo -i -u postgres
    ```
@@ -361,7 +350,20 @@ CELERY_BEAT_SCHEDULE = {
       docker-compose exec web sh -c 'celery -A core beat -l info'
    ```
 
+## محتویات فایل .env در دایرکتوری /core/
+```env
+SECRET_KEY=django-insecure-lu3q-&w05blxicjw1rm3lurlxnz6u@t0ge28h62!_2e80g+zrj
+SQL_DATABASE=crawler
+SQL_USER=admin
+SQL_PASSWORD=@dmin2321
+SQL_HOST=db
+SQL_PORT=5432
 
+
+POSTGRES_USER=admin
+POSTGRES_PASSWORD=@dmin2321
+POSTGRES_DB=crawler
+```
 
 </div>
 
